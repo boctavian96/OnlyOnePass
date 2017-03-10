@@ -5,6 +5,7 @@
  */
 package logic;
 import logic.EncryptionAlgorithms.ZEncryption;
+import java.util.Random;
 
 /**
  *
@@ -14,7 +15,10 @@ public class Encrypter {
     
     private String username;
     private String password;
+    private Random randomint;
     private ZEncryption firstEncryption = new ZEncryption();
+    //private SecondEncryption sEncryption = new SecondEncryption();
+    //private ThirdEncryption tEncryption = new ThirdEncryption();
     
     public Encrypter()
     {
@@ -23,18 +27,43 @@ public class Encrypter {
     
     public Encrypter(String username, String password)
     {
-        encryptUsername(username);
-        encryptPassword(password);
+        int c = randomint.nextInt(3) + 1;
+        encryptUsername(username, c);
+        encryptPassword(password, c);
+        
     }
     
-    private void encryptUsername(String username)
+    private void encryptUsername(String username, int c)
     {
-        this.username = firstEncryption.encrypt(username);
+        switch(c)
+        {
+            case 1:
+                this.username = firstEncryption.encrypt(username);
+                break;
+            case 2:
+                
+                break;
+            case 3: 
+                
+                break;
+        }
     }
     
-    private void encryptPassword(String passwort)
+    private void encryptPassword(String passwort, int c)
     {
-        this.password = firstEncryption.encrypt(password);
+        switch(c)
+        {
+            case 1:
+                this.password = firstEncryption.encrypt(password);
+                break;
+            case 2:
+                
+                break;
+                
+            case 3: 
+                
+                break;
+        }
     }
     
     public String getUsername()
