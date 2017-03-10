@@ -6,7 +6,7 @@
 package logic.EncryptionAlgorithms;
 
 /**
- *
+ * Zodiac Encryption
  * @author Octavian
  */
 public class ZEncryption extends RootEncryption{
