@@ -14,6 +14,7 @@ public class Encrypter {
     
     private String username;
     private String password;
+    private ZEncryption firstEncryption = new ZEncryption();
     
     public Encrypter()
     {
@@ -28,12 +29,12 @@ public class Encrypter {
     
     private void encryptUsername(String username)
     {
-        this.username = ZEncryption.ENCRYPT(username);
+        this.username = firstEncryption.encrypt(username);
     }
     
     private void encryptPassword(String passwort)
     {
-        this.password = ZEncryption.ENCRYPT(password);
+        this.password = firstEncryption.encrypt(password);
     }
     
     public String getUsername()

@@ -9,18 +9,20 @@ package logic.EncryptionAlgorithms;
  *
  * @author Octavian
  */
-public class ZEncryption {
+public class ZEncryption extends RootEncryption{
     
-    private ZEncryption(){}
+    private StringBuilder key;
     
-    public static final String ENCRYPT(String word)
+    @Override
+    public String encrypt(String word)
     {
         return "crypt";
     }
     
-    public static final String GETKEY()
+    @Override
+    public String getKey()
     {
-        return "key";
+        return key.toString();
     }
     
 }
