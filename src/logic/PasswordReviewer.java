@@ -7,7 +7,7 @@ package logic;
 
 /**
  *
- * @author Octavian
+ * @author Laur
  */
 public class PasswordReviewer {
     

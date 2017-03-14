@@ -11,7 +11,7 @@ import configs.Config;
 
 /**
  *
- * @author Octavian
+ * @author Laur
  */
 public class GenerareParola {
    
