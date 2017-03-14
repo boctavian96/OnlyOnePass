@@ -5,6 +5,8 @@
  */
 package logic;
 
+import logic.BreakKey;
+
 /**
  *
  * @author Octavian
@@ -15,6 +17,7 @@ public class Decrypter {
     
     private StringBuilder key;
     private StringBuilder args;
+    private BreakKey bk;
     
     //-------------Constructori---------------
     public Decrypter()
@@ -32,13 +35,24 @@ public class Decrypter {
     
     public String startDecr()
     {
-        StringBuilder dArgs = new StringBuilder(args.length());
+        StringBuilder dArgs = new StringBuilder(this.args.length());
+        int inIntKey = Integer.parseInt(key.toString());
+        bk = new BreakKey(inIntKey);
+        int[] breakedKey = new int[10];
+        breakedKey = bk.breakKey();
         for(int i = 0; i < key.length(); i++)
         {
-            dArgs.append(dArgs.charAt(i) - key.charAt(i));
+            dArgs.append((char)(args.charAt(i) - bk.result[i]));
+            //dArgs.append("_");
         }
+        //System.out.println("\n" + bk.breakKey() + "\n");
+        System.out.println();
+        bk.typeResult();
+        System.out.println();
         
         return dArgs.toString();
     }
+    
+    
     
 }

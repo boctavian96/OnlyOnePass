@@ -15,6 +15,10 @@ public class Encrypter {
     
     private String username;
     private String password;
+    
+    private String kPass;
+    private String kUser;
+    
     private Random randomint;
     private ZEncryption firstEncryption;
     //private SecondEncryption sEncryption = new SecondEncryption();
@@ -44,6 +48,7 @@ public class Encrypter {
         {
             case 1:
                 this.username = firstEncryption.encrypt(username);
+                this.kUser = firstEncryption.getKey();
                 break;
             case 2:
                 
@@ -60,6 +65,7 @@ public class Encrypter {
         {
             case 1:
                 this.password = firstEncryption.encrypt(password);
+                this.kPass = firstEncryption.getKey();
                 break;
             case 2:
                 
@@ -79,5 +85,15 @@ public class Encrypter {
     public String getPasswort()
     {
         return password;
+    }
+    
+    public String getKUser()
+    {
+        return kUser;
+    }
+    
+    public String getKPass()
+    {
+        return kPass;
     }
 }

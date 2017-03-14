@@ -5,6 +5,7 @@
  */
 package logic.EncryptionAlgorithms;
 
+import configs.Config;
 import java.util.Random;
 
 /**
@@ -16,6 +17,7 @@ public class ZEncryption extends RootEncryption{
     private StringBuilder cpass;
     private StringBuilder key;
     private Random randomizer;
+    private int randomNum;
     
     public ZEncryption()
     {
@@ -26,21 +28,16 @@ public class ZEncryption extends RootEncryption{
     @Override
     public String encrypt(String word)
     {
-        randomizer = new Random();
-        int randomNum = randomizer.nextInt(20) - 10;
+        //randomizer = new Random();
+         randomNum = randomizer.nextInt(Config.REAL_VALUE);
         cpass = new StringBuilder(word.length());
         //randomizer.nextInt();
         
         for(int i = 0; i < word.length(); i++)
         {
-            if(i%2 == 0)
-            {
-                randomNum = randomizer.nextInt(10);
-                key.append(randomNum);
-                
-            }
-            
+            randomNum = randomizer.nextInt(Config.REAL_VALUE) + 1;
             cpass.append((char)(word.charAt(i) + randomNum));
+            key.append(randomNum);
         }
 
         return cpass.toString();

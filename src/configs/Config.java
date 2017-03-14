@@ -15,6 +15,7 @@ public class Config {
     public final static String USER = "boctavian";
     public final static String PASS = "123";
     public final static String CARACTERE = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*";
+    public final static int REAL_VALUE = 9;
     
     //Constructor
     private Config(){}
