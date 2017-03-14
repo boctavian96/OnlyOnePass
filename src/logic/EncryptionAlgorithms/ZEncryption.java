@@ -26,6 +26,7 @@ public class ZEncryption extends RootEncryption{
     @Override
     public String encrypt(String word)
     {
+        randomizer = new Random();
         int randomNum = randomizer.nextInt(20) - 10;
         cpass = new StringBuilder(word.length());
         //randomizer.nextInt();
@@ -34,7 +35,7 @@ public class ZEncryption extends RootEncryption{
         {
             if(i%2 == 0)
             {
-                randomNum = randomizer.nextInt(20) - 10;
+                randomNum = randomizer.nextInt(10);
                 key.append(randomNum);
                 
             }

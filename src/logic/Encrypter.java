@@ -16,18 +16,23 @@ public class Encrypter {
     private String username;
     private String password;
     private Random randomint;
-    private ZEncryption firstEncryption = new ZEncryption();
+    private ZEncryption firstEncryption;
     //private SecondEncryption sEncryption = new SecondEncryption();
     //private ThirdEncryption tEncryption = new ThirdEncryption();
     
     public Encrypter()
     {
-        
+        firstEncryption = new ZEncryption();
     }
     
     public Encrypter(String username, String password)
     {
-        int c = randomint.nextInt(3) + 1;
+        firstEncryption = new ZEncryption();
+        int c = 1;
+        
+        this.password = password;
+        this.username = username;
+        
         encryptUsername(username, c);
         encryptPassword(password, c);
         
