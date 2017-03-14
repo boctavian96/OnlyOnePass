@@ -26,9 +26,9 @@ public class DataWritter {
 	void WriteMyData() throws FileNotFoundException
 	{
             PrintWriter siteOut;
-              try (PrintWriter passOut = new PrintWriter("passes.txt")) {
+              try (PrintWriter passOut = new PrintWriter("passes.oop")) {
                   passOut.println((String)this.pass);
-                  siteOut = new PrintWriter("sites.txt");
+                  siteOut = new PrintWriter("sites.oop");
                   siteOut.println((String)this.site);
               }
 		 siteOut.close();
