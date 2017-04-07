@@ -68,4 +68,4 @@ public class PasswordRating {
 	}
 
 }
-
+//working in progress 70%
