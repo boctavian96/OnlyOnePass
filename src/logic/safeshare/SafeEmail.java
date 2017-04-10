@@ -5,10 +5,28 @@
  */
 package logic.safeshare;
 
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.activation.*;
+
 /**
  *
  * @author Octavian
  */
 public class SafeEmail {
+    private String to;
+    private String from;
     
+    public SafeEmail(String[] args)
+    {
+        to = args[0];
+        from = args[1];
+    }
+    
+    public void sendSafe()
+    {
+        //Sending E-mail
+    }
+        
 }
