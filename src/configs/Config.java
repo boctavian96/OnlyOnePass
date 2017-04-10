@@ -16,7 +16,7 @@ public class Config {
     public final static String PASS = "123";
     public final static String CARACTERE = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*";
     public final static int REAL_VALUE = 9;
-    public final static String VERSION = "v0.3";
+    public final static String VERSION = "v0.3.125";
     
     //Constructor
     private Config(){}
