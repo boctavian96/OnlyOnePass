@@ -43,6 +43,7 @@ public class LogGenerator {
     {
         sOutput.append("---[INFO]: ");
         sOutput.append(Message);
+        writeToFile(sOutput.toString());
     }
     
     /**
@@ -53,6 +54,7 @@ public class LogGenerator {
     {
         sOutput.append("---[WARNING]: ");
         sOutput.append(Message);
+        writeToFile(sOutput.toString());
     }
     
     /**
@@ -63,6 +65,7 @@ public class LogGenerator {
     {
         sOutput.append("---[ERROR]: ");
         sOutput.append(Message);
+        writeToFile(sOutput.toString());
     }
     
     //Functii private 
