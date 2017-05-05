@@ -62,10 +62,6 @@ public class PasswordRating {
 			
 		}
 	}
-	public static void main(String[] args) {
-		new PasswordRating("CocoJambo33@");
-
-	}
 
 }
 //working in progress 70%

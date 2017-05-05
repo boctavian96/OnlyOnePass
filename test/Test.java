@@ -15,14 +15,11 @@ public class Test {
     
     public static void main(String args[])
     {
-        //ZEncryption z = new ZEncryption();
-        Encrypter e = new Encrypter("boctavian96", "g55326116g");
-        Decrypter d = new Decrypter();
+        Encrypter e = new Encrypter("boc", "g55326116g");
+        Decrypter d = new Decrypter(e.getKUser(), e.getUsername());
         
         System.out.println(e.getUsername());
-        System.out.println(e.getPasswort());
-        //System.out.println(z.encrypt(z.))
-        //z.purge();
+        System.out.println(d.startDecr());
     }
     
 }
