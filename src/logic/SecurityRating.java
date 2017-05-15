@@ -5,6 +5,8 @@
  */
 package logic;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Octavian
@@ -14,10 +16,25 @@ public class SecurityRating {
     public float RateMySecurity()
     {
         PasswordRating pr;
-        String[] passwords;
+        String[] passwords = {"test", "test2", "Bla"};
+        float r = 0;
+        ArrayList<Float> ratings;
+        ratings = new ArrayList<Float>();
         
+        for(String i : passwords)
+        {
+            pr = new PasswordRating(i);
+            ratings.add(pr.getRating());
+        }
         
-     //Parse Password   
-     return
+        for(float i : ratings)
+        {
+            r += i;
+        }
+        
+        r = r/ratings.size();
+        
+        //Parse Password   
+        return r;
     }
 }
