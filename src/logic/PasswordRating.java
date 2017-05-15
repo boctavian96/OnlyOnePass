@@ -99,10 +99,10 @@ public class PasswordRating {
 			
 		}
 	}
-	public static void main(String[] args) {
-		new PasswordRating("CocoJambo33@");
-
-	}
+        public float getRating()
+        {
+            return Rating;
+        }
 
 }
 //working in progress 95%
