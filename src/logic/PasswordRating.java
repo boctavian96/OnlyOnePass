@@ -20,6 +20,7 @@ public class PasswordRating {
 	//static final String sb = "!@#$%^&*";
 	
 	private int NrCaractere=0, LiteraMica=0, LiteraMare=0, Numere=0, Simboluri=0, Conditii=0, Rating=0;
+	private int Condlm=0, CondLM=0, CondSimb=0, CondNr=0, CondCar=0;
 	
 	public PasswordRating(String pass){
 		cpass = pass.toString().toCharArray();
@@ -38,26 +39,62 @@ public class PasswordRating {
 				if((cpass[i] >= 'A')&&(cpass[i] <= 'Z'))
 					LiteraMare = LiteraMare + 1;
 			}
-			if(NrCaractere > 0)
-				Conditii = Conditii + 1;
+			if(NrCaractere > 8)
+			{
+				CondCar = CondCar + 1;
+				if(CondCar != 0)
+					Conditii = Conditii + 1;
+			}
 			if(Numere > 0)
-				Conditii = Conditii + 1;
+			{
+				CondNr = CondNr + 1;
+				if(CondNr != 0)
+					Conditii = Conditii + 1;
+			}
 			if(Simboluri > 0)
-				Conditii = Conditii + 1;
+			{
+				CondSimb = CondSimb + 1;
+				if(CondSimb != 0)
+					Conditii = Conditii + 1;
+			}
 			if(LiteraMica > 0)
-				Conditii = Conditii + 1;
+			{
+				Condlm = Condlm + 1;
+				if(Condlm != 0)
+					Conditii = Conditii + 1;
+			}
 			if(LiteraMare > 0)
-				Conditii = Conditii + 1;
+			{
+				CondLM = CondLM + 1;
+				if(CondLM != 0)
+					Conditii = Conditii + 1;
+			}
 			
-			Rating = (NrCaractere*4)+((cpass.length-LiteraMare)*2)+((cpass.length-LiteraMica)*2)+(Numere*4)+(Simboluri*6)+(Conditii*2);
 			
+			//Rating
+			Rating = (NrCaractere*4)+((cpass.length-LiteraMare)*2)+((cpass.length-LiteraMica)*2)+(Numere*4)+(Simboluri*6)+(Conditii*2)+(CondCar*2)+(CondNr*4)+(CondSimb*6)+(Condlm*2)+(CondLM*2);
+			
+			if(Rating <=10)
+			{
+				System.out.println("Very weak password.");
+			}
+			else if(Rating <=40)
+			{
+				System.out.println("Weak password.");
+			}
+			else if(Rating <=70)
+			{
+				System.out.println("Good password.");
+			}
+			else if(Rating <=100)
+			{
+				System.out.println("Strong password.");
+			}
+			else if(Rating >100)
+				System.out.println("Very strong password.");
+			
+			//Output
 			System.out.println("Parola:"+pass);
-			System.out.println("Caractere:"+NrCaractere);
-			System.out.println("Numere:"+Numere);
-			System.out.println("Litere mici:"+LiteraMica);
-			System.out.println("Litere mari:"+LiteraMare);
-			System.out.println("Simboluri:"+Simboluri);
-			System.out.println("Conditii indeplinite:"+Conditii);
 			System.out.println("Rating-ul parolei:"+Rating);
 			
 		}
@@ -68,4 +105,4 @@ public class PasswordRating {
 	}
 
 }
-//working in progress 70%
+//working in progress 95%
