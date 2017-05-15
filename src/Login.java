@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 
+import configs.Config;
+import gui.*;
+
 /**
  *
  * @author Octavian
@@ -44,8 +47,18 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);
 
         jButton1.setText("Log in");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Exit");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +148,38 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
+     * Butonul de login
+     * @param evt 
+     */
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        String username;
+        String password;
+        
+        username = jTextField1.getText();
+        password = jPasswordField1.getPassword().toString();
+        
+        if (1 == 1)
+        {
+            //this.setVisible(false);
+            HauptMenu hm = new HauptMenu();
+            hm.setVisible(true);
+            
+            //hm.getContentPane().add(hm);
+            
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    /**
+     * Butonul de exit
+     * @param evt 
+     */
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -145,7 +190,7 @@ public class Login extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
