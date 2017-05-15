@@ -20,7 +20,6 @@ public class PasswordRating {
 	//static final String sb = "!@#$%^&*";
 	
 	private int NrCaractere=0, LiteraMica=0, LiteraMare=0, Numere=0, Simboluri=0, Conditii=0, Rating=0;
-        private float rating; 
 	
 	public PasswordRating(String pass){
 		cpass = pass.toString().toCharArray();
@@ -65,7 +64,7 @@ public class PasswordRating {
 	}
         public float getRating()
         {
-            return rating;
+            return Rating;
         }
 
 }
