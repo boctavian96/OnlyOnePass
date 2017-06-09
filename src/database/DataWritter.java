@@ -17,15 +17,21 @@ import java.io.FileNotFoundException;
 public class DataWritter {
   	private String passWr;
 	private String siteWr;
-	public DataWritter(String site, String pass) {
+        private String key1;
+        private String key2;
+        
+	public DataWritter(String site, String pass, String key1, String key2) {
 		this.passWr = pass;
 		this.siteWr = site;
+                this.key1 = key1;
+                this.key2 = key2;
 	}
         public DataWritter( String site) {
 	System.out.println("Please input a site AND a password as well");
 	}
        
-	void WriteMyData() throws IOException
+   
+	public void WriteMyData() throws IOException
 	{
        /*Write data in the sites related file */
 		
@@ -41,6 +47,36 @@ public class DataWritter {
 		 FileOutputStream outPass = new FileOutputStream("passes.oop",true) ; 
 		 ObjectOutputStream oosPass = new ObjectOutputStream(outPass ) ;
 		 oosPass.writeObject(this.passWr);
+		 oosPass.writeObject("\n");
+		 oosPass.flush();
+		 oosPass.close(); 
+		 
+	}
+        
+        public void WriteMyData(String user, String password, String key1, String key2) throws IOException
+        {
+       /*Write data in the sites related file */
+            
+                 FileOutputStream outKey = new FileOutputStream("keys.oop",true) ; 
+		 ObjectOutputStream oosKey = new ObjectOutputStream(outKey) ;
+		 oosKey.writeObject(key1);
+                 oosKey.writeObject(key2);
+		 oosKey.writeObject("\n");
+		 oosKey.flush();
+		 oosKey.close();
+		
+		 FileOutputStream outSite = new FileOutputStream("sites.oop",true) ; 
+		 ObjectOutputStream oosSite = new ObjectOutputStream(outSite) ;
+		 oosSite.writeObject(user);
+		 oosSite.writeObject("\n");
+		 oosSite.flush();
+		 oosSite.close();
+		
+		 /*Write data in the passwords related file */
+		 
+		 FileOutputStream outPass = new FileOutputStream("passes.oop",true) ; 
+		 ObjectOutputStream oosPass = new ObjectOutputStream(outPass ) ;
+		 oosPass.writeObject(password);
 		 oosPass.writeObject("\n");
 		 oosPass.flush();
 		 oosPass.close(); 

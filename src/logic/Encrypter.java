@@ -6,6 +6,7 @@
 package logic;
 import logic.EncryptionAlgorithms.ZEncryption;
 import java.util.Random;
+import logic.EncryptionAlgorithms.MultiplyEncryption;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Encrypter {
     
     private Random randomint;
     private ZEncryption firstEncryption;
+    private MultiplyEncryption secondEncryption;
     //private SecondEncryption sEncryption = new SecondEncryption();
     //private ThirdEncryption tEncryption = new ThirdEncryption();
     
@@ -32,6 +34,7 @@ public class Encrypter {
     public Encrypter(String username, String password)
     {
         firstEncryption = new ZEncryption();
+        secondEncryption = new MultiplyEncryption();
         int c = 1;
         
         this.password = password;
@@ -40,6 +43,13 @@ public class Encrypter {
         encryptUsername(username, c);
         encryptPassword(password, c);
         
+    }
+    
+    public void crypt(String username, String password)
+    {
+        //Random r = new Random();
+        encryptUsername(username, 1);
+        encryptPassword(password, 1);
     }
     
     private void encryptUsername(String username, int c)
@@ -51,10 +61,8 @@ public class Encrypter {
                 this.kUser = firstEncryption.getKey();
                 break;
             case 2:
-                
-                break;
-            case 3: 
-                
+                this.username = secondEncryption.encrypt(username);
+                this.kUser = secondEncryption.getKey();
                 break;
         }
     }
@@ -68,11 +76,8 @@ public class Encrypter {
                 this.kPass = firstEncryption.getKey();
                 break;
             case 2:
-                
-                break;
-                
-            case 3: 
-                
+                this.password = secondEncryption.encrypt(password);
+                this.kPass = secondEncryption.getKey();
                 break;
         }
     }
