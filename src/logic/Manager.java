@@ -5,7 +5,6 @@
  */
 package logic;
 
-import configs.*;
 import database.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,11 +17,13 @@ import statistics.*;
  */
 public class Manager {
   
+    private ArrayList<Account> a;
+    
     private DataWritter dw;
     private DataReader dr;
     
     private Decrypter d;
-    private Encrypter e;
+    private Encrypter enc;
     
     private GenerareParola gp;
     private PasswordRating pr;
@@ -33,12 +34,9 @@ public class Manager {
     
     public Manager()
     {
+        
         dw = new DataWritter("/db");
         //dr = new DataReader();
-        
-        e = new Encrypter();
-        
-        lg = new LogGenerator();
     }
     
     public String generatePassword(int lungime_parola)
@@ -49,25 +47,51 @@ public class Manager {
     
     public void insertAccount(String username, String password)
     {
-        e.crypt(username, password);
+        enc = new Encrypter();
+        enc.crypt(username, password);
+        
+        System.out.println("In MANAGER : " + enc.getKUser() + " " + enc.getKPass());
         
         try
         {
-            dw.WriteMyData(e.getUsername(), e.getPasswort(), e.getKUser(), e.getKPass());
+            dw.WriteMyData(enc.getUsername(), enc.getPasswort(), enc.getKUser(), enc.getKPass());
         }
         catch(IOException e)
         {
             lg = new LogGenerator();
-            lg.logError(e.getMessage());
+            lg.logError("getMyPassword()"+e.getMessage());
             e.printStackTrace();
         }
     }
     
+    public String getMyUsername(int index)
+    {
+        String myusername;
+        dr = new DataReader();
+        try
+        {
+            dr.ReadMyData();
+        }
+        catch(IOException e)
+        {
+            lg = new LogGenerator();
+            e.printStackTrace();
+            lg.logError("getMyUsername()" + e.getMessage());
+        }
+        
+        a = dr.getAccounts();
+        //System.out.println("Marimea lui : " + a.size());
+        d = new Decrypter(a.get(index).getKey1(), a.get(index).getUsername());
+        
+        myusername = d.startDecr();
+        
+        return myusername;
+    }
+    
     public String getMyPassword(int index)
     {
-        ArrayList<Account> a;
-        String username = new String();
-        String password = new String();
+        //ArrayList<Account> a;        
+        String mypassword;
         dr = new DataReader();
         try
         {
@@ -76,19 +100,25 @@ public class Manager {
         catch(IOException e)
         {
             e.printStackTrace();
+            lg.logError(e.getMessage());
         }
         
         a = dr.getAccounts();
         
-        d = new Decrypter(a.get(index).getKey1(), a.get(index).getUsername());
-        
-        username = d.startDecr();
-        
         d = new Decrypter(a.get(index).getKey2(), a.get(index).getPassword());
         
-        password = d.startDecr();
+        //username = d.startDecr();
         
-        return password;
+        //d = new Decrypter(a.get(index).getKey2(), a.get(index).getPassword());
+        
+        mypassword = d.startDecr();
+        
+        return mypassword;
+    }
+    
+    public float getTotalSecurity()
+    {
+        return a.get(0).totalSecurity();
     }
     
 }

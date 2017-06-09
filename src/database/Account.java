@@ -5,6 +5,8 @@
  */
 package database;
 
+import logic.Decrypter;
+import logic.PasswordRating;
 
 /**
  *
@@ -12,11 +14,16 @@ package database;
  */
 public class Account {
     
+    public static float security;
     public static int index = 0;
     private String username;
     private String password;
     private String key1;
     private String key2;
+    
+    
+    private Decrypter d;
+    private PasswordRating pr;
 
     public Account(String username, String password, String key1, String key2) 
     {
@@ -25,6 +32,20 @@ public class Account {
         this.key1 = key1;
         this.key2 = key2;
         index++;
+        
+       // d = new Decrypter(key2, password);
+        //pr = new PasswordRating(d.startDecr());
+        //security += pr.getRating();
+    }
+    
+    public static float totalSecurity()
+    {
+        return security/index;
+    }
+    
+    public float gts()
+    {
+        return totalSecurity();
     }
     
     //Setters

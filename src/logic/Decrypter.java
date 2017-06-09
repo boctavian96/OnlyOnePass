@@ -40,7 +40,7 @@ public class Decrypter {
         bk = new BreakKey(inIntKey);
         int[] breakedKey = new int[10];
         breakedKey = bk.breakKey();
-        for(int i = 0; i < key.length(); i++)
+        for(int i = 0; i < breakedKey.length; i++)
         {
             dArgs.append((char)(args.charAt(i) - bk.result[i]));
             //dArgs.append("_");

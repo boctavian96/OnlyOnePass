@@ -6,9 +6,14 @@
 package database;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.FileNotFoundException;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
 
 /**
  *
@@ -20,6 +25,9 @@ public class DataWritter {
         private String key1;
         private String key2;
         
+        private BufferedWriter bw;
+        private FileWriter fw;
+        
 	public DataWritter(String site, String pass, String key1, String key2) {
 		this.passWr = pass;
 		this.siteWr = site;
@@ -27,7 +35,7 @@ public class DataWritter {
                 this.key2 = key2;
 	}
         public DataWritter( String site) {
-	System.out.println("Please input a site AND a password as well");
+	System.out.println("test");
 	}
        
    
@@ -35,7 +43,7 @@ public class DataWritter {
 	{
        /*Write data in the sites related file */
 		
-		 FileOutputStream outSite = new FileOutputStream("sites.oop",true) ; 
+		 FileOutputStream outSite = new FileOutputStream("sites.txt",true) ; 
 		 ObjectOutputStream oosSite = new ObjectOutputStream(outSite) ;
 		 oosSite.writeObject(this.siteWr);
 		 oosSite.writeObject("\n");
@@ -44,7 +52,7 @@ public class DataWritter {
 		
 		 /*Write data in the passwords related file */
 		 
-		 FileOutputStream outPass = new FileOutputStream("passes.oop",true) ; 
+		 FileOutputStream outPass = new FileOutputStream("passes.txt",true) ; 
 		 ObjectOutputStream oosPass = new ObjectOutputStream(outPass ) ;
 		 oosPass.writeObject(this.passWr);
 		 oosPass.writeObject("\n");
@@ -57,30 +65,51 @@ public class DataWritter {
         {
        /*Write data in the sites related file */
             
-                 FileOutputStream outKey = new FileOutputStream("keys.oop",true) ; 
-		 ObjectOutputStream oosKey = new ObjectOutputStream(outKey) ;
-		 oosKey.writeObject(key1);
-                 oosKey.writeObject(key2);
-		 oosKey.writeObject("\n");
-		 oosKey.flush();
-		 oosKey.close();
-		
-		 FileOutputStream outSite = new FileOutputStream("sites.oop",true) ; 
-		 ObjectOutputStream oosSite = new ObjectOutputStream(outSite) ;
-		 oosSite.writeObject(user);
-		 oosSite.writeObject("\n");
-		 oosSite.flush();
-		 oosSite.close();
-		
-		 /*Write data in the passwords related file */
-		 
-		 FileOutputStream outPass = new FileOutputStream("passes.oop",true) ; 
-		 ObjectOutputStream oosPass = new ObjectOutputStream(outPass ) ;
-		 oosPass.writeObject(password);
-		 oosPass.writeObject("\n");
-		 oosPass.flush();
-		 oosPass.close(); 
-		 
+         try
+         {
+             
+             File file = new File("users.oop");
+             if(!file.exists())
+             {
+                 file.createNewFile();
+             }
+             
+             //Appent to file 
+            fw = new FileWriter(file.getAbsoluteFile(), true);
+            bw = new BufferedWriter(fw);
+            bw.write(user + "\n");
+            bw.flush();
+            
+            file = new File("lenoqua.oop");
+            if(!file.exists())
+             {
+                 file.createNewFile();
+             }
+            fw = new FileWriter(file.getAbsoluteFile(), true);
+            bw = new BufferedWriter(fw);
+            bw.write(password + "\n");
+            bw.flush();
+            
+            file = new File("ignite.oop");
+            if(!file.exists())
+             {
+                 file.createNewFile();
+             }
+            fw = new FileWriter(file.getAbsoluteFile(), true);
+            bw = new BufferedWriter(fw);
+            bw.write(key1 + "\n");
+            bw.flush();
+            
+            System.out.println("ACHTUNG !!! " + key2);
+            bw.write(key2.substring(key1.length()) + "\n");
+ 
+            bw.flush();
+
+         }
+         catch(IOException e)
+         {
+             e.printStackTrace();
+         }
 	}
     
     
@@ -88,3 +117,4 @@ public class DataWritter {
     
     
 }
+        

@@ -20,6 +20,11 @@ public class DataReader {
     private String siteRd;
     public ArrayList<Account> accounts;
     
+    public DataReader()
+    {
+        accounts = new ArrayList<Account>();
+    }
+    
     
 	public void ReadMyData() throws IOException
 	{
@@ -31,9 +36,9 @@ public class DataReader {
                 String readlineKey1;
                 String readlineKey2;
                 
-                File passPath = new File("passes.oop");
-                File sitePath = new File("sites.oop"); //usernames
-                File keyPath = new File("keys.oop");
+                File passPath = new File("lenoqua.oop");
+                File sitePath = new File("users.oop"); //usernames
+                File keyPath = new File("ignite.oop");
                 
                 BufferedReader b1 = new BufferedReader(new FileReader(sitePath));
                 BufferedReader b2 = new BufferedReader(new FileReader(passPath));
@@ -46,6 +51,8 @@ public class DataReader {
                     readlineKey2 = b3.readLine();
                    
                     accounts.add(new Account(readlineUser, readlinePassword, readlineKey1, readlineKey2));
+                   // System.out.println(accounts.get(0).getUsername() + " " + accounts.get(0).getPassword());
+                    
                 }
             }
             catch(IOException e)

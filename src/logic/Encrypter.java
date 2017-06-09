@@ -67,7 +67,7 @@ public class Encrypter {
         }
     }
     
-    private void encryptPassword(String passwort, int c)
+    private void encryptPassword(String password, int c)
     {
         switch(c)
         {
